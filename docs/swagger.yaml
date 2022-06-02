@@ -1,0 +1,143 @@
+basePath: /api/v1
+definitions:
+  model.Movie:
+    properties:
+      director:
+        example: Joe Russo
+        type: string
+      id:
+        type: integer
+      summary:
+        example: good movie
+        type: string
+      title:
+        example: 'Avengers : Endgame'
+        type: string
+      year:
+        example: 2019
+        type: integer
+    type: object
+host: localhost:8081
+info:
+  contact: {}
+  description: golang challenge eps 4 api documentation
+  title: Golang Challenge eps 4
+  version: 1.0.0
+paths:
+  /movies:
+    get:
+      consumes:
+      - application/json
+      description: get all movies data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Movie'
+        "400":
+          description: ""
+      summary: get all movies
+      tags:
+      - movies
+    post:
+      consumes:
+      - application/json
+      description: create a movie data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Movie'
+        "400":
+          description: ""
+      summary: create a movie
+      tags:
+      - movies
+  /movies/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a movie data
+      parameters:
+      - description: Movie ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Movie'
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: delete a movie
+      tags:
+      - movies
+    get:
+      consumes:
+      - application/json
+      description: get a movie data
+      parameters:
+      - description: Movie ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Movie'
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: get a movie
+      tags:
+      - movies
+    put:
+      consumes:
+      - application/json
+      description: update a movie data
+      parameters:
+      - description: Movie ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Movie data
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/model.Movie'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Movie'
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: update a movie
+      tags:
+      - movies
+schemes:
+- http
+swagger: "2.0"

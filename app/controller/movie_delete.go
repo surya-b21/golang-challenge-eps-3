@@ -9,6 +9,16 @@ import (
 )
 
 // DeleteMovie function
+// @Summary      delete a movie
+// @Description  delete a movie data
+// @Tags         movies
+// @Accept       application/json
+// @Produce      application/json
+// @Param        id   path      int  true  "Movie ID"
+// @Success      200  {object}  model.Movie
+// @Failure      400
+// @Failure      404
+// @Router       /movies/{id} [delete]
 func DeleteMovie(c *fiber.Ctx) error {
 	id := c.Params("id")
 	regex := regexp.MustCompile(`^[0-9]+$`)

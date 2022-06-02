@@ -10,6 +10,17 @@ import (
 )
 
 // PutMovie function
+// @Summary      update a movie
+// @Description  update a movie data
+// @Tags         movies
+// @Accept       application/json
+// @Produce      application/json
+// @Param        id   path      int  true  "Movie ID"
+// @param		 data body      []model.Movie{} true "Movie data"
+// @Success      200  {object}  model.Movie
+// @Failure      400
+// @Failure      404
+// @Router       /movies/{id} [put]
 func PutMovie(c *fiber.Ctx) error {
 	db := services.DB
 	var movieAPI model.MovieAPI

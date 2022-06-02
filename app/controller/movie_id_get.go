@@ -9,6 +9,16 @@ import (
 )
 
 // GetMovieID function
+// @Summary     get a movie
+// @Description get a movie data
+// @Tags         movies
+// @Accept       application/json
+// @Produce      application/json
+// @Param        id   path      int  true  "Movie ID"
+// @Success      200  {object}  model.Movie
+// @Failure      400
+// @Failure      404
+// @Router       /movies/{id} [get]
 func GetMovieID(c *fiber.Ctx) error {
 	id := c.Params("id")
 	regex := regexp.MustCompile(`^[0-9]+$`)

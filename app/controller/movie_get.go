@@ -8,6 +8,14 @@ import (
 )
 
 // GetMovie function
+// @Summary      get all movies
+// @Description  get all movies data
+// @Tags         movies
+// @Accept       application/json
+// @Produce      application/json
+// @Success      200  {object}  model.Movie
+// @Failure      400
+// @Router       /movies [get]
 func GetMovie(c *fiber.Ctx) error {
 	db := services.DB
 	var movies []model.Movie

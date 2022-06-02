@@ -8,6 +8,14 @@ import (
 )
 
 // PostMovie function
+// @Summary      create a movie
+// @Description  create a movie data
+// @Tags         movies
+// @Accept       application/json
+// @Produce      application/json
+// @Success      200  {object}  model.Movie
+// @Failure      400
+// @Router       /movies [post]
 func PostMovie(c *fiber.Ctx) error {
 	db := services.DB
 	var movieAPI model.MovieAPI
