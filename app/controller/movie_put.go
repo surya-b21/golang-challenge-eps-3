@@ -4,6 +4,7 @@ import (
 	"challenge-eps3/app/model"
 	"challenge-eps3/app/services"
 	"fmt"
+	"regexp"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -21,6 +22,12 @@ func PutMovie(c *fiber.Ctx) error {
 	movie := new(model.Movie)
 
 	id := c.Params("id")
+	regex := regexp.MustCompile(`^[0-9]+$`)
+	if !regex.MatchString(id) {
+		return c.Status(400).JSON(fiber.Map{
+			"message": "invalid id format",
+		})
+	}
 	result := db.Where(`id = ?`, id).First(&movie)
 	if result.RowsAffected == 0 {
 		return c.Status(404).JSON(fiber.Map{
